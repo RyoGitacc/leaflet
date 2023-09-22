@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Outage Mapping Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This application is built with React and uses the Leaflet mapping library to visualize power outages within a map. Users can navigate the map to different locations and report new outage areas. The outage areas are represented as circles on the map.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+- Clone the repository.
+- Run `npm install` to install all the required dependencies.
+- Run `npm start` to start the application.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## File Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- App.js: Main application file.
+- Form.js: Contains the form for flying to a particular location on the map.
+- PostOutage.js: Contains the form for adding new outage areas.
 
-### `npm test`
+## App Component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Imports
 
-### `npm run build`
+- React: JavaScript library for building user interfaces.
+- Leaflet: Open-source JavaScript library for interactive maps.
+- Custom Components: Form and PostOutage.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `circleCenter`: Default center for an initial circle (if needed).
+- `circleOptions`: Default styling for the circle.
+- `mapRef`: Ref for map container to control map programmatically.
+- `areas`: State variable for storing information about all the outage areas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Methods
 
-### `npm run eject`
+- `fly(e)`
+  Takes an event object e as an argument and flies to the location provided in the form. The location is set as the center of the map view.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `addOutageArea(e)`
+  Takes an event object e as an argument and adds a new outage area to the areas state variable. The new outage area is represented as a circle on the map.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### JSX Elements
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- `<MapContainer>`
+  The main map container that holds the Leaflet map.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `<TileLayer>`
+  Provides the map tiles from OpenStreetMap.
 
-## Learn More
+- `<Circle>`
+  Represents each outage area. Each `<Circle>` component has a `<Popup>` to display the description.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `<Form>`
+  Custom component that provides a form to fly to different locations on the map.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `<PostOutage>`
+  Custom component that provides a form to add new outage areas.
