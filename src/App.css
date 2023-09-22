@@ -19,7 +19,8 @@ button:focus{
   top: 5%;
   right: 5%;
   z-index: 5000;
-  width: 230px;
+  min-width: 230px;
+  width: 10%;
  
 }
 
@@ -41,6 +42,7 @@ button:focus{
   height: 5vh;
   border: none;
   box-sizing: border-box;
+  font-size: 16px;
 }
 .input:focus{
   outline: none;
@@ -53,7 +55,8 @@ button:focus{
   position: absolute;
   bottom: 5%;
   left: 5%;
-  width: 200px;
+  min-width: 200px;
+  width:13%;
   z-index: 5000;
   background-color: gray;
   text-align: center;

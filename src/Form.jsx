@@ -6,7 +6,7 @@ export default function Form({fly}) {
     <form className="search-form" onSubmit={e=>fly(e)}>
       <div className='search-container' >
         <SearchIcon className='search-icon'/>
-        <input type="text" className='input' placeholder='Location or Latitude,Longitude'/>
+        <input type="text" className='input' placeholder='Location'/>
         <button  type='submit' className='submit-btn'></button>
       </div>
     </form>
