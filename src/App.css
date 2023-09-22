@@ -37,7 +37,8 @@ button:focus{
 }
 .input{
   width: calc(100% - 16px);
-  height: 30px;
+  min-height: 30px;
+  height: 5vh;
   border: none;
   box-sizing: border-box;
 }
@@ -70,7 +71,8 @@ button:focus{
   width: 100%;
   box-sizing: border-box;
   resize: none;
-  height: 100px;
+  min-height: 100px;
+  height: 10vh;
 }
 
 .add-outage-btn{
