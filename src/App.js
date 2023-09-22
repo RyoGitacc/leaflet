@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import { useRef, useState } from 'react';
 import Form from './Form';
 import PostOutage from './PostOutage';
+import axios from 'axios';
 
 const circleCenter = [43.653908,-79.384293]; // Latitude and Longitude
 const circleOptions = {
@@ -19,38 +20,46 @@ function App() {
   const [areas, setAreas]=useState([]);
 
 
-  const fly=(e)=>{
+  const fly=async(e)=>{
     e.preventDefault();
-    const center=e.target[0].value.split(',')
-
-    if(mapRef.current){
-      mapRef.current.flyTo(center,13)
+    const address = e.target[0].value;
+    try{
+      const res = await axios.get(`https://geocode.maps.co/search?q=${address}`);
+      const {lat,lon} = res.data[0];
+      if(mapRef.current){
+      mapRef.current.flyTo([lat,lon],13)
+    }
+    }catch(e){
+      console.log(e);
     }
   }
 
-  const addOutageArea=(e)=>{
+  const addOutageArea=async(e)=>{
     e.preventDefault();
-    console.log(e.target[0].value, e.target[1].value);
-    const center = e.target[0].value.split(',');
     const radius=parseInt(e.target[1].value);
-    const desc=e.target[2].value
-   
-  
-    const circle={
-      center,
-      options:{
-        color: 'green', 
-        fillColor: 'green', 
-        fillOpacity: 0.5,
-        radius: radius,
-      },
-      desc,
+    const desc=e.target[2].value;
+    const address = e.target[0].value;
+    try{
+      const res = await axios.get(`https://geocode.maps.co/search?q=${address}`);
+      const {lat,lon} = res.data[0];
+      const circle={
+        center:[lat,lon],
+        options:{
+          color: 'green', 
+          fillColor: 'green', 
+          fillOpacity: 0.5,
+          radius: radius,
+        },
+        desc,
+      }
+       setAreas(curr=>[...curr,circle]);
+       if(mapRef.current){
+        mapRef.current.flyTo([lat,lon],15)
+      }
+    }catch(e){
+      console.log(e);
     }
-     console.log(circle)
-     setAreas(curr=>[...curr,circle]);
-     if(mapRef.current){
-      mapRef.current.flyTo(center,13)
-    }
+    
   }
  
   
